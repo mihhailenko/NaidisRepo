@@ -1,6 +1,6 @@
 ﻿namespace NaidisRepo
 {
-    public class Teine_osa_funktsioonid
+    public class Osa2_funktsioonid
     {
         // *Kui eesnimi on Juku siis lähme Jukuga kinno. Lisa valiku, kus Juku vanuse alusel otsustate mis pilet talle vaja osta.
         // <6 aastad  - tasuta

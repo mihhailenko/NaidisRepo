@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-
-namespace NaidisRepo
+﻿namespace NaidisRepo
 {
-    public static class Kolmas_osa_funktsioonid
+    public static class Osa3_funktsioonid
     {
         // 2. Viie arvu analüüs
         public static void ViieArvuAnaluus()
@@ -75,9 +71,7 @@ namespace NaidisRepo
                 Console.Write("Sisesta vanus: ");
                 int vanus = int.Parse(Console.ReadLine());
 
-                Inimene uus = new Inimene();
-                uus.Nimi = nimi;
-                uus.Vanus = vanus;
+                Inimene uus = new Inimene(nimi, vanus);
 
                 inimesed.Add(uus);
             }

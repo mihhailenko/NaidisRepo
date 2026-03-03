@@ -124,28 +124,28 @@ namespace NaidisRepo
                 switch (valik)
                 {
                     case "1":
-                        Teine_osa_funktsioonid.JukuKino();
+                        Osa2_funktsioonid.JukuKino();
                         break;
                     case "2":
-                        Teine_osa_funktsioonid.Pinginaabrid();
+                        Osa2_funktsioonid.Pinginaabrid();
                         break;
                     case "3":
-                        Teine_osa_funktsioonid.TubaPindalaJaRemont();
+                        Osa2_funktsioonid.TubaPindalaJaRemont();
                         break;
                     case "4":
-                        Teine_osa_funktsioonid.Alghind30Soodustus();
+                        Osa2_funktsioonid.Alghind30Soodustus();
                         break;
                     case "5":
-                        Teine_osa_funktsioonid.Temperatuur();
+                        Osa2_funktsioonid.Temperatuur();
                         break;
                     case "6":
-                        Teine_osa_funktsioonid.PikkusKategooria();
+                        Osa2_funktsioonid.PikkusKategooria();
                         break;
                     case "7":
-                        Teine_osa_funktsioonid.PikkusJaSugu();
+                        Osa2_funktsioonid.PikkusJaSugu();
                         break;
                     case "8":
-                        Teine_osa_funktsioonid.PoodOstud();
+                        Osa2_funktsioonid.PoodOstud();
                         break;
                     case "0":
                         return;
@@ -195,41 +195,41 @@ namespace NaidisRepo
                         Console.WriteLine("Ei ole see ülesanne veel valmis. Tulge tagasi hiljem.");
                         break;
                     case "2":
-                        Kolmas_osa_funktsioonid.ViieArvuAnaluus();
+                        Osa3_funktsioonid.ViieArvuAnaluus();
                         break;
                     case "3":
-                        Kolmas_osa_funktsioonid.NimedJaVanused();
+                        Osa3_funktsioonid.NimedJaVanused();
                         break;
                     case "4":
-                        Kolmas_osa_funktsioonid.OstaElevantAra();
+                        Osa3_funktsioonid.OstaElevantAra();
                         break;
                     case "5":
-                        Kolmas_osa_funktsioonid.ArvamiseMang();
+                        Osa3_funktsioonid.ArvamiseMang();
                         break;
                     case "6":
                         Console.WriteLine("Ei ole see ülesanne veel valmis. Tulge tagasi hiljem.");
                         //Kolmas_osa_funktsioonid.SuurimNeliarvulineArv();
                         break;
                     case "7":
-                        Kolmas_osa_funktsioonid.Korrutustabel();
+                        Osa3_funktsioonid.Korrutustabel();
                         break;
                     case "8":
-                        Kolmas_osa_funktsioonid.OpilastegaMangimine();
+                        Osa3_funktsioonid.OpilastegaMangimine();
                         break;
                     case "9":
-                        Kolmas_osa_funktsioonid.ArvudeRuudud();
+                        Osa3_funktsioonid.ArvudeRuudud();
                         break;
                     case "10":
-                        Kolmas_osa_funktsioonid.PositNegNull();
+                        Osa3_funktsioonid.PositNegNull();
                         break;
                     case "11":
-                        Kolmas_osa_funktsioonid.KeskmisestSuuremad();
+                        Osa3_funktsioonid.KeskmisestSuuremad();
                         break;
                     case "12":
-                        Kolmas_osa_funktsioonid.SuurimArvJaIndeks();
+                        Osa3_funktsioonid.SuurimArvJaIndeks();
                         break;
                     case "13":
-                        Kolmas_osa_funktsioonid.PaarJaPaarituStat();
+                        Osa3_funktsioonid.PaarJaPaarituStat();
                         break;
                     case "0":
                         Console.Clear();
@@ -245,63 +245,5 @@ namespace NaidisRepo
                 Console.ReadLine();
             }
         }
-
-
-        public static void Kolmas_osa_old()
-        {
-            for (int i = 0; i < 10; i++)
-            {
-                Console.WriteLine($"Tere, {i + 1}");
-            }
-            Console.WriteLine("While: ");
-            int j = 0;
-            while (j < 10)
-            {
-                Console.WriteLine($"Tere, {j + 1}");
-                j++;
-            }
-            Console.WriteLine("Do while: ");
-            do
-            {
-                Console.WriteLine($"Tere, {j}");
-                j--;
-            }
-            while (j != 0);
-
-            List<Isik> inimesed = new List<Isik>();
-
-            for (int i = 0; i < 3; i++)
-            {
-                Console.Write("Sisesta nimi: ");
-                string nimi = Console.ReadLine();
-
-                Console.Write("Sisesta vanus: ");
-                int vanus = int.Parse(Console.ReadLine());
-
-                Isik uusIsik = new Isik();
-                uusIsik.Nimi = nimi;
-                uusIsik.Vanus = vanus;
-
-                inimesed.Add(uusIsik);
-            }
-
-            Console.WriteLine("\nKõik inimesed tervitavad:\n");
-
-            foreach (Isik isik in inimesed)
-            {
-                isik.Tervita();
-            }
-        }
-
-
-        ////Random rnd = new Random();
-        ////int juhuslik_arv = rnd.Next(-5, 25);
-        ////Console.WriteLine(Naidis_funktsioonid.Kuu_nimetus(juhuslik_arv));
-        ////juhuslik_arv = rnd.Next(-5, 25);
-        ////tekst = Naidis_funktsioonid.Kuu_nimetus(juhuslik_arv)
-
-        //Teine_class.JukuKino();
-
-
     }
 }
