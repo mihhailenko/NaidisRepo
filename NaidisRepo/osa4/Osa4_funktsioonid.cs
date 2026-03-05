@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NaidisRepo
+namespace NaidisRepo.osa4
 {
     public static class Osa4_funktsioonid
     {
-        // 1. ÜL: Lemmiktoidu salvestamine faili (StreamWriter ja try-catch)
+        // 1. ÜL: Lemmiktoidu salvestamine faili (StreamWriter)
         public static void LemmiktoiduSalvestamineFaili()
         {
             Console.Clear();
@@ -80,14 +80,69 @@ namespace NaidisRepo
             }
         }
 
+        // 4. ÜL: Külmkapi kontroll ehk otsing listist (Contains)
+        public static void KoostisosaOtsing()
+        {
+            Console.Clear();
+            Console.WriteLine("4. ÜL: Külmkapi kontroll ehk otsing listist (Contains)\n");
+
+            List<string> koostisosad_list = LaeKoostisosad();
+
+            Console.Write("Sisesta toiduaine nimi, mida otsida: ");
+            string otsitav = Console.ReadLine();
+
+            if (koostisosad_list.Contains(otsitav))
+            {
+                Console.WriteLine("Koostisosa on olemas!");
+            }
+            else
+            {
+                Console.WriteLine("Seda koostisosa meil retseptis ei ole.");
+            }
+        }
+
+        // 5. ÜL: Uuendatud nimekirja salvestamine (File.WriteAllLines)
+        public static void KoostisosadeSalvestamine()
+        {
+            Console.Clear();
+            Console.WriteLine("5. ÜL: Uuendatud nimekirja salvestamine (File.WriteAllLines)\n");
+
+            List<string> koostisosad_list = LaeKoostisosad();
+
+            try
+            {
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Koostisosad.txt");
+                File.WriteAllLines(path, koostisosad_list);
+                Console.WriteLine("Uus retsept on edukalt faili salvestatud!");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Viga failiga!");
+            }
+        }
+
         private static List<string> LaeKoostisosad()
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Koostisosad.txt");
 
             List<string> koostisosad_list = new List<string>();
-            foreach (string rida in File.ReadAllLines(path))
+            try
             {
-                koostisosad_list.Add(rida);
+                // kui faili ei ole, loome näidisfaili
+                if (!File.Exists(path))
+                {
+                    File.WriteAllLines(path, new string[] { "Ketšup", "Tomat", "Sool", "Pipar" });
+                }
+
+                foreach (string rida in File.ReadAllLines(path))
+                {
+                    koostisosad_list.Add(rida);
+                }
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Viga failiga");
             }
 
             return koostisosad_list;
