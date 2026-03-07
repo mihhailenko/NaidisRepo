@@ -9,23 +9,31 @@ namespace NaidisRepo.osa4
 {
     public static class Osa4_funktsioonid
     {
+        static List<string> koostisosad_list = new List<string>();
+
         // 1. ÜL: Lemmiktoidu salvestamine faili (StreamWriter)
         public static void LemmiktoiduSalvestamineFaili()
         {
             Console.Clear();
             Console.WriteLine("1. ÜL: Lemmiktoidu salvestamine faili (StreamWriter)\n");
 
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Retseptid.txt");
+            try
+            {
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Retseptid.txt");
 
-            Console.Write("Sisesta üks Itaalia toidu nimi (nt Lasagne või Risotto): ");
-            string toit = Console.ReadLine();
+                Console.Write("Sisesta üks Itaalia toidu nimi (nt Lasagne või Risotto): ");
+                string toit = Console.ReadLine();
 
-             StreamWriter sw = new StreamWriter(path, true); // true = lisa lõppu
-             sw.WriteLine(toit);
-             sw.Close();
+                StreamWriter sw = new StreamWriter(path, true);
+                sw.WriteLine(toit);
+                sw.Close();
 
-             Console.WriteLine("Toit on salvestatud faili Retseptid.txt");
-            
+                Console.WriteLine("Toit on salvestatud faili Retseptid.txt");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Mingi viga failiga");
+            }
         }
 
         // 2. ÜL: Kogu menüü kuvamine (StreamReader)
@@ -42,12 +50,19 @@ namespace NaidisRepo.osa4
                 return;
             }
 
-            StreamReader sr = new StreamReader(path);
-            string sisu = sr.ReadToEnd();
-            sr.Close();
+            try
+            {
+                StreamReader sr = new StreamReader(path);
+                string sisu = sr.ReadToEnd();
+                sr.Close();
 
-            Console.WriteLine("Retseptid.txt sisu:\n");
-            Console.WriteLine(sisu);
+                Console.WriteLine("Retseptid.txt sisu:\n");
+                Console.WriteLine(sisu);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Mingi viga failiga, ei saa faili lugeda");
+            }
         }
 
         // 3. ÜL: Koostisosade muutmine nimekirjas
@@ -56,7 +71,7 @@ namespace NaidisRepo.osa4
             Console.Clear();
             Console.WriteLine("3. ÜL: Koostisosade muutmine nimekirjas (List + File.ReadAllLines)\n");
 
-            List<string> koostisosad_list = LaeKoostisosad();
+            koostisosad_list = LaeKoostisosad();
 
             Console.WriteLine("Algne nimekiri:");
             foreach (string rida in koostisosad_list)
@@ -107,12 +122,17 @@ namespace NaidisRepo.osa4
             Console.Clear();
             Console.WriteLine("5. ÜL: Uuendatud nimekirja salvestamine (File.WriteAllLines)\n");
 
-            List<string> koostisosad_list = LaeKoostisosad();
-
             try
             {
+                if (koostisosad_list.Count == 0)
+                {
+                    Console.WriteLine("Kõigepealt tee kolmas ülesanne.");
+                    return;
+                }
+
                 string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Koostisosad.txt");
                 File.WriteAllLines(path, koostisosad_list);
+
                 Console.WriteLine("Uus retsept on edukalt faili salvestatud!");
             }
             catch (Exception)
@@ -125,7 +145,8 @@ namespace NaidisRepo.osa4
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Koostisosad.txt");
 
-            List<string> koostisosad_list = new List<string>();
+            List<string> list = new List<string>();
+
             try
             {
                 // kui faili ei ole, loome näidisfaili
@@ -136,16 +157,15 @@ namespace NaidisRepo.osa4
 
                 foreach (string rida in File.ReadAllLines(path))
                 {
-                    koostisosad_list.Add(rida);
+                    list.Add(rida);
                 }
-
             }
             catch (Exception)
             {
                 Console.WriteLine("Viga failiga");
             }
 
-            return koostisosad_list;
+            return list;
         }
     }
 }
