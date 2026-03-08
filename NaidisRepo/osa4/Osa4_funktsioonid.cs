@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NaidisRepo.osa4
+﻿namespace NaidisRepo.osa4
 {
     public static class Osa4_funktsioonid
     {
@@ -134,6 +127,55 @@ namespace NaidisRepo.osa4
                 File.WriteAllLines(path, koostisosad_list);
 
                 Console.WriteLine("Uus retsept on edukalt faili salvestatud!");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Viga failiga!");
+            }
+        }
+
+        // 6. ÜL: Itaalia restorani menüü (Failist Tuple'isse)
+        public static void ItaaliaRestoraniMenuu()
+        {
+            Console.Clear();
+            Console.WriteLine("6. ÜL: Itaalia restorani menüü (Failist Tuple'isse)\n");
+
+            try
+            {
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Menuu.txt");
+
+                // kui faili ei ole, loome näidisfaili
+                if (!File.Exists(path))
+                {
+                    File.WriteAllLines(path, new string[]
+                    {
+                "Margherita pitsa;San Marzano tomatid, värske mozzarella, basiilik;8.50",
+                "Pasta Carbonara;Spagetid, guanciale, pecorino juust, muna;12.00",
+                "Tiramisu;Mascarpone, espresso, savoiardi küpsised;6.50"
+                    });
+                }
+
+                List<Tuple<string, string, double>> menuu_list = new List<Tuple<string, string, double>>();
+
+                foreach (string rida in File.ReadAllLines(path))
+                {
+                    string[] osad = rida.Split(';');
+
+                    if (osad.Length == 3)
+                    {
+                        double hind = double.Parse(osad[2]);
+                        menuu_list.Add(Tuple.Create(osad[0], osad[1], hind));
+                    }
+                }
+
+                Console.WriteLine("---------------- MENUU ----------------\n");
+
+                foreach (Tuple<string, string, double> roog in menuu_list)
+                {
+                    Console.WriteLine(roog.Item1.PadRight(30) + roog.Item3 + " €");
+                    Console.WriteLine("   Koostisosad: " + roog.Item2);
+                    Console.WriteLine();
+                }
             }
             catch (Exception)
             {

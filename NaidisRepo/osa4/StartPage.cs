@@ -23,6 +23,7 @@ namespace NaidisRepo.osa4
                 Console.WriteLine("3  - ÜL: Koostisosade muutmine nimekirjas (List ja File.ReadAllLines)");
                 Console.WriteLine("4  - ÜL: Külmkapi kontroll ehk otsing listist (Contains)");
                 Console.WriteLine("5  - ÜL: Uuendatud nimekirja salvestamine (File.WriteAllLines)");
+                Console.WriteLine("6  - ÜL: Itaalia restorani menüü (Failist Tuple'isse)");
                 Console.WriteLine("0  - Tagasi");
                 Console.WriteLine();
 
@@ -45,6 +46,9 @@ namespace NaidisRepo.osa4
                         break;
                     case "5":
                         Osa4_funktsioonid.KoostisosadeSalvestamine();
+                        break;
+                    case "6":
+                        Osa4_funktsioonid.ItaaliaRestoraniMenuu();
                         break;
                     case "0":
                         return;
