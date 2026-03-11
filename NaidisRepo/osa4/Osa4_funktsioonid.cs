@@ -30,7 +30,7 @@
         }
 
         // 2. ÜL: Kogu menüü kuvamine (StreamReader)
-        public static void KoguMenuuKuvamine()
+        public static void KoguMenuKuvamine()
         {
             Console.Clear();
             Console.WriteLine("2. ÜL: Kogu menüü kuvamine (StreamReader)\n");
@@ -138,12 +138,12 @@
         }
 
         // 6. ÜL: Itaalia restorani menüü (Failist Tuple'isse)
-        public static void ItaaliaRestoraniMenuu()
+        public static void ItaaliaRestoraniMenu()
         {
             Console.Clear();
             Console.WriteLine("6. ÜL: Itaalia restorani menüü (Failist Tuple'isse)\n");
 
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Menuu.txt");
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Menu.txt");
 
             // kui faili ei ole, loome näidisfaili
             if (!File.Exists(path))
@@ -164,7 +164,7 @@
                 }
             }
 
-            List<Tuple<string, string, double>> menuu_list = new List<Tuple<string, string, double>>();
+            List<Tuple<string, string, double>> Menu_list = new List<Tuple<string, string, double>>();
             string[] read = new string[0];
 
             try
@@ -186,7 +186,7 @@
                     try
                     {
                         double hind = double.Parse(osad[2]);
-                        menuu_list.Add(Tuple.Create(osad[0], osad[1], hind));
+                        Menu_list.Add(Tuple.Create(osad[0], osad[1], hind));
                     }
                     catch (Exception ex)
                     {
@@ -195,9 +195,9 @@
                 }
             }
 
-            Console.WriteLine("---------------- MENUU ----------------\n");
+            Console.WriteLine("---------------- Menu ----------------\n");
 
-            foreach (Tuple<string, string, double> roog in menuu_list)
+            foreach (Tuple<string, string, double> roog in Menu_list)
             {
                 Console.WriteLine($"{roog.Item1.PadRight(30)}{roog.Item3} €");
                 Console.WriteLine($"   Koostisosad: {roog.Item2}");

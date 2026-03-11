@@ -36,7 +36,7 @@ namespace NaidisRepo.osa4
                         Osa4_funktsioonid.LemmiktoiduSalvestamineFaili();
                         break;
                     case "2":
-                        Osa4_funktsioonid.KoguMenuuKuvamine();
+                        Osa4_funktsioonid.KoguMenuKuvamine();
                         break;
                     case "3":
                         Osa4_funktsioonid.KoostisosadeMuutmine();
@@ -48,7 +48,7 @@ namespace NaidisRepo.osa4
                         Osa4_funktsioonid.KoostisosadeSalvestamine();
                         break;
                     case "6":
-                        Osa4_funktsioonid.ItaaliaRestoraniMenuu();
+                        Osa4_funktsioonid.ItaaliaRestoraniMenu();
                         break;
                     case "0":
                         return;
