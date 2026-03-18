@@ -5,7 +5,7 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>NaidisRepo.osa4.StartPage</StartupObject>
+    <StartupObject>NaidisRepo.osa5.StartPage</StartupObject>
   </PropertyGroup>
 
 </Project>

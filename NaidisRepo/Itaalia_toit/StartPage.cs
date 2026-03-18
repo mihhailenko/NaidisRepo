@@ -48,7 +48,7 @@ namespace NaidisRepo.Itaalia_toit
                         Alamfunktsionid.KustutaToit();
                         break;
                     case "5":
-                        Alamfunktsionid.SalvestaFaili();
+                        //Alamfunktsionid.SalvestaFaili();
                         break;
                     case "0":
                         Console.WriteLine("Programm suletud. Arrivederci!");
