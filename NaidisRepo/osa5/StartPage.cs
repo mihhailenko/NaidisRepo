@@ -27,7 +27,7 @@
                 switch (valik)
                 {
                     case "1":
-                        Osa5_funktsioonid.KaloriteKalkulaator();
+                        Alamfunktsioonid.KaloriteKalkulaator();
                         break;
                     case "2":
                         //Osa5_funktsioonid.MaakonnadJaPealinnad();
