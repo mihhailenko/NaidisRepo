@@ -37,4 +37,11 @@ namespace NaidisRepo.osa5
             Aktiivsustase = aktiivsustase;
         }
     }
+
+    // 3 ÜL
+    public class Opilane
+    {
+        public string Nimi;
+        public List<int> Hinded;
+    }
 }

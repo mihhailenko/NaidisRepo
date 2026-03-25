@@ -33,6 +33,7 @@
                         //Osa5_funktsioonid.MaakonnadJaPealinnad();
                         break;
                     case "3":
+                        Alamfunktsioonid.OpilasedJaHinneteAnalyys();
                         break;
                     case "4":
                         break;
