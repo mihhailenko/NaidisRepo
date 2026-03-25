@@ -42,6 +42,7 @@
                         Alamfunktsioonid.ArvudeMassiiviStatistika();
                         break;
                     case "6":
+                        Alamfunktsioonid.LemmikloomadeRegister();
                         break;
                     case "7":
                         break;

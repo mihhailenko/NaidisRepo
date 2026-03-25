@@ -359,6 +359,78 @@ namespace NaidisRepo.osa5
             Console.WriteLine("Sorteeritud arvud: " + string.Join(" ", arvud));
         }
 
+        // 6  - ÜL: Lemmikloomade register
+        public static void LemmikloomadeRegister()
+        {
+            Console.Clear();
+            Console.WriteLine("6. ÜL: Lemmikloomade register\n");
+
+            List<Lemmikloom> loomad = new List<Lemmikloom>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine($"{i + 1}. lemmikloom");
+
+                Console.Write("Sisesta nimi: ");
+                string nimi = Console.ReadLine();
+
+                Console.Write("Sisesta liik: ");
+                string liik = Console.ReadLine();
+
+                int vanus = KysiInt("Sisesta vanus: ");
+
+                loomad.Add(new Lemmikloom { Nimi = nimi, Liik = liik, Vanus = vanus });
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Kõik kassid:");
+            KuvaKoikKassid(loomad);
+            double keskmineVanus = loomad.Average(l => l.Vanus);
+
+            Console.WriteLine($"\nLemmikloomade keskmine vanus on {Math.Round(keskmineVanus, 2)}");
+
+            Lemmikloom vanim = loomad.OrderByDescending(l => l.Vanus).First();
+            Console.WriteLine($"Vanim loom on {vanim.Nimi}, liik: {vanim.Liik}, vanus: {vanim.Vanus}");
+
+            Console.Write("\nSisesta looma nimi otsimiseks: ");
+            string otsitavNimi = Console.ReadLine();
+
+            Lemmikloom leitudLoom = LeiaLoomNimeJargi(loomad, otsitavNimi);
+
+            if (leitudLoom != null) { 
+                Console.WriteLine($"Loom leitud: {leitudLoom.Nimi}, liik: {leitudLoom.Liik}, vanus: {leitudLoom.Vanus}");
+            }
+            else { 
+                Console.WriteLine("Sellise nimega looma ei leitud.");
+            }
+        }
+
+        public static void KuvaKoikKassid(List<Lemmikloom> loomad)
+        {
+            List<Lemmikloom> kassid = loomad.Where(l => l.Liik.ToLower() == "kass").ToList();
+
+            if (kassid.Count == 0)
+            {
+                Console.WriteLine("Kasse ei ole.");
+                return;
+            }
+
+            foreach (Lemmikloom loom in kassid)
+                Console.WriteLine($"{loom.Nimi} - {loom.Vanus} a");
+        }
+
+        public static Lemmikloom LeiaLoomNimeJargi(List<Lemmikloom> loomad, string nimi)
+        {
+            foreach (Lemmikloom loom in loomad)
+            {
+                if (loom.Nimi.ToLower() == nimi.ToLower())
+                {
+                    return loom;
+                }
+            }
+
+            return null;
+        }
 
         public static int KysiInt(string kysimus)
         {

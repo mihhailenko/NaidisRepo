@@ -53,4 +53,12 @@ namespace NaidisRepo.osa5
         public int Aasta;
         public string Zanr;
     }
+
+    // 6 ÜL
+    public class Lemmikloom
+    {
+        public string Nimi;
+        public string Liik;
+        public int Vanus;
+    }
 }
