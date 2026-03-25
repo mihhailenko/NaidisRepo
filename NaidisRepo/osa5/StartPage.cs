@@ -39,6 +39,7 @@
                         Alamfunktsioonid.FilmideKogu();
                         break;
                     case "5":
+                        Alamfunktsioonid.ArvudeMassiiviStatistika();
                         break;
                     case "6":
                         break;

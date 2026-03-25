@@ -327,7 +327,37 @@ namespace NaidisRepo.osa5
             return grupid;
         }
 
+        // 5  - ÜL: Arvude massiivi statistika
+        public static void ArvudeMassiiviStatistika()
+        {
+            Console.Clear();
+            Console.WriteLine("5. ÜL: Arvude massiivi statistika\n");
 
+            Console.Write("Sisesta arvud ühele reale: ");
+            double[] arvud = Osa3_funktsioonid.Tekstist_arvud();
+
+            if (arvud.Length == 0)
+            {
+                Console.WriteLine("Ühtegi arvu ei leitud.");
+                return;
+            }
+
+            double max = arvud.Max();
+            double min = arvud.Min();
+            double summa = arvud.Sum();
+            double keskmine = arvud.Average();
+            int suuremadKuiKeskmine = arvud.Count(a => a > keskmine);
+
+
+            Console.WriteLine($"\nMaksimaalne arv: {max}");
+            Console.WriteLine($"Minimaalne arv: {min}");
+            Console.WriteLine($"Keskmine: {keskmine}");
+            Console.WriteLine($"Kogusumma: {summa}");
+            Console.WriteLine($"Keskmisest suuremaid arve: {suuremadKuiKeskmine}");
+           
+            Array.Sort(arvud);
+            Console.WriteLine("Sorteeritud arvud: " + string.Join(" ", arvud));
+        }
 
 
         public static int KysiInt(string kysimus)
