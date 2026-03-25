@@ -44,4 +44,13 @@ namespace NaidisRepo.osa5
         public string Nimi;
         public List<int> Hinded;
     }
+
+
+    // 4 ÜL
+    public class Film
+    {
+        public string Pealkiri;
+        public int Aasta;
+        public string Zanr;
+    }
 }

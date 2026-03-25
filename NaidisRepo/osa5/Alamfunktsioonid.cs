@@ -187,6 +187,148 @@ namespace NaidisRepo.osa5
             return (double)summa / opilane.Hinded.Count;
         }
 
+        // 4 - ÜL: Filmide kogu
+        public static void FilmideKogu()
+        {
+            Console.Clear();
+            Console.WriteLine("=================================");
+            Console.WriteLine("       4. ÜL: Filmide kogu");
+            Console.WriteLine("=================================\n");
+
+            // Loome filmide nimekirja
+            List<Film> filmid = new List<Film>();
+
+            filmid.Add(new Film() { Pealkiri = "Interstellar", Aasta = 2014, Zanr = "ulme" });
+            filmid.Add(new Film() { Pealkiri = "Titanic", Aasta = 1997, Zanr = "draama" });
+            filmid.Add(new Film() { Pealkiri = "The Dark Knight", Aasta = 2008, Zanr = "action" });
+            filmid.Add(new Film() { Pealkiri = "Inception", Aasta = 2010, Zanr = "ulme" });
+            filmid.Add(new Film() { Pealkiri = "Toy Story", Aasta = 1995, Zanr = "animatsioon" });
+
+            // Kuvame kõik filmid
+            Console.WriteLine("Kõik filmid:");
+            Console.WriteLine("---------------------------------");
+            for (int i = 0; i < filmid.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {filmid[i].Pealkiri} ({filmid[i].Aasta}) - {filmid[i].Zanr}");
+            }
+
+            // Kuvame olemasolevad žanrid
+            List<string> zanrid = filmid.Select(f => f.Zanr.ToLower()).Distinct().ToList();
+
+            Console.WriteLine();
+            Console.WriteLine("Saadaval žanrid:");
+            Console.WriteLine("---------------------------------");
+            foreach (string zanrNimi in zanrid)
+            {
+                Console.WriteLine($"- {zanrNimi}");
+            }
+
+            // Otsime filme žanri järgi
+            Console.WriteLine();
+            Console.Write("Sisesta žanr: ");
+            string zanr = Console.ReadLine().ToLower();
+
+            List<Film> leitudFilmid = LeiaFilmidZanriJargi(filmid, zanr);
+
+            Console.WriteLine();
+            Console.WriteLine("Otsingu tulemus:");
+            Console.WriteLine("---------------------------------");
+
+            if (leitudFilmid.Count > 0)
+            {
+                for (int i = 0; i < leitudFilmid.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {leitudFilmid[i].Pealkiri} ({leitudFilmid[i].Aasta})");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Selle žanriga filme ei leitud.");
+            }
+
+            // Leiame uusima filmi
+            Film uusimFilm = LeiaUusimFilm(filmid);
+
+            Console.WriteLine();
+            Console.WriteLine("Uusim film:");
+            Console.WriteLine("---------------------------------");
+            Console.WriteLine($"{uusimFilm.Pealkiri} ({uusimFilm.Aasta}) - {uusimFilm.Zanr}");
+
+            // Grupeerime filmid žanri järgi
+            Dictionary<string, List<Film>> grupid = GrupeeriFilmidZanriteKaupa(filmid);
+
+            Console.WriteLine();
+            Console.WriteLine("Filmid žanrite kaupa:");
+            Console.WriteLine("=================================");
+
+            foreach (string zanrNimi in grupid.Keys)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"[{zanrNimi.ToUpper()}]");
+
+                for (int i = 0; i < grupid[zanrNimi].Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {grupid[zanrNimi][i].Pealkiri} ({grupid[zanrNimi][i].Aasta})");
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Vajuta suvalist klahvi, et jätkata...");
+            Console.ReadKey();
+        }
+
+        public static List<Film> LeiaFilmidZanriJargi(List<Film> filmid, string zanr)
+        {
+            List<Film> leitudFilmid = new List<Film>();
+
+            foreach (Film film in filmid)
+            {
+                if (film.Zanr.ToLower() == zanr)
+                {
+                    leitudFilmid.Add(film);
+                }
+            }
+
+            return leitudFilmid;
+        }
+
+        public static Film LeiaUusimFilm(List<Film> filmid)
+        {
+            Film uusimFilm = filmid[0];
+
+            foreach (Film film in filmid)
+            {
+                if (film.Aasta > uusimFilm.Aasta)
+                {
+                    uusimFilm = film;
+                }
+            }
+
+            return uusimFilm;
+        }
+
+        public static Dictionary<string, List<Film>> GrupeeriFilmidZanriteKaupa(List<Film> filmid)
+        {
+            // Loome sõnastiku žanrite jaoks
+            Dictionary<string, List<Film>> grupid = new Dictionary<string, List<Film>>();
+
+            foreach (Film film in filmid)
+            {
+                // Kui sellist žanri veel ei ole, loome uue nimekirja
+                if (!grupid.ContainsKey(film.Zanr))
+                {
+                    grupid.Add(film.Zanr, new List<Film>());
+                }
+
+                // Lisame filmi õigesse žanri
+                grupid[film.Zanr].Add(film);
+            }
+
+            return grupid;
+        }
+
+
+
 
         public static int KysiInt(string kysimus)
         {

@@ -36,6 +36,7 @@
                         Alamfunktsioonid.OpilasedJaHinneteAnalyys();
                         break;
                     case "4":
+                        Alamfunktsioonid.FilmideKogu();
                         break;
                     case "5":
                         break;
