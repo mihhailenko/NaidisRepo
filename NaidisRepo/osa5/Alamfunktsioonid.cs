@@ -71,21 +71,36 @@ namespace NaidisRepo.osa5
         public static List<Toode> LaeTooted()
         {
             List<Toode> tooted = new List<Toode>();
+            string path = "tooted.txt";
 
-            Toode t1 = new Toode("Riis", 130);
-            tooted.Add(t1);
+            if (!File.Exists(path))
+            {
+                Console.WriteLine($"Faili {path} ei leitud.");
+                return tooted;
+            }
 
-            Toode t2 = new Toode("Kanafilee", 165);
-            tooted.Add(t2);
+            try
+            {
+                string[] read = File.ReadAllLines(path);
 
-            Toode t3 = new Toode("Kaerahelbed", 366);
-            tooted.Add(t3);
+                foreach (string rida in read)
+                {
+                    if (rida != "")
+                    {
+                        string[] osad = rida.Split(';');
 
-            Toode t4 = new Toode("Banaan", 89);
-            tooted.Add(t4);
+                        string nimi = osad[0];
+                        double kalorid = double.Parse(osad[1]);
 
-            Toode t5 = new Toode("Kodujuust", 98);
-            tooted.Add(t5);
+                        tooted.Add(new Toode(nimi, kalorid));
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Viga faili lugemisel. Palun kontrolli faili sisu.");
+                Console.WriteLine("Iga rida peab olema kujul: TooteNimi;Kalorid");
+            }
 
             return tooted;
         }
